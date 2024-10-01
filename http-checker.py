@@ -1,4 +1,14 @@
 import requests
+import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Domainz")
+    parser.add_argument('-f', '--file', type=str, help='Nombre del archivo a procesar')
+    return parser.parse_args()
+args = parse_args()
+
+
 
 def iterar_archivo(path,funcion):
     try:
@@ -39,4 +49,4 @@ def write_file(code,url,file = "resultados.txt"):
     with open(file, "a") as f:
         f.write(f"[{code}] - {url}\n")
 
-iterar_archivo("domains", check_status)
+iterar_archivo(args.file, check_status)
